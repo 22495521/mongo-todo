@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "5cf15dad-e365-4c02-8cc6-1ec4df36bc57",
+		"name": "todolist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25098640"
+	},
+	"item": [
+		{
+			"name": "get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mongo-todo-ntqi.onrender.com/post",
+					"protocol": "https",
+					"host": [
+						"mongo-todo-ntqi",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"大大頭\",\r\n    \"tags\": \"娛樂\",   \r\n    \"type\": \"group\",\r\n    \"content\":\"大大的內容\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://mongo-todo-ntqi.onrender.com/post",
+					"protocol": "https",
+					"host": [
+						"mongo-todo-ntqi",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
