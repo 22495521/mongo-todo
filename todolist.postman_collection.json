@@ -7,18 +7,20 @@
 	},
 	"item": [
 		{
-			"name": "get",
+			"name": "查看全部",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://mongo-todo-ntqi.onrender.com/post",
-					"protocol": "https",
+					"raw": "http://127.0.0.1:3000/post",
+					"protocol": "http",
 					"host": [
-						"mongo-todo-ntqi",
-						"onrender",
-						"com"
+						"127",
+						"0",
+						"0",
+						"1"
 					],
+					"port": "3000",
 					"path": [
 						"post"
 					]
@@ -27,13 +29,13 @@
 			"response": []
 		},
 		{
-			"name": "post",
+			"name": "單筆新增",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"大大頭\",\r\n    \"tags\": \"娛樂\",   \r\n    \"type\": \"group\",\r\n    \"content\":\"大大的內容\"\r\n}",
+					"raw": "{\r\n    \"name\": \"小頭\",\r\n    \"tags\": \"娛樂\",   \r\n    \"type\": \"group\",\r\n    \"content\":\"大大的內容\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -50,6 +52,83 @@
 					],
 					"path": [
 						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除全部",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/posts",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單一",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/post/661fce1bc0f4ce23216a7beb",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"post",
+						"661fce1bc0f4ce23216a7beb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯單一",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"美女哥\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/post/661fd0e9c0f4ce23216a7bed",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"post",
+						"661fd0e9c0f4ce23216a7bed"
 					]
 				}
 			},
