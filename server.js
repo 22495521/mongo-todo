@@ -13,7 +13,6 @@ const posts = require("./Model/Modelposts");
   }
 })();
 
-const todos = [];
 const server = http.createServer(async (req, res) => {
   const { url, method } = req;
   let body = "";
@@ -54,11 +53,60 @@ const server = http.createServer(async (req, res) => {
           return errorHandler(res, 400, "content未填寫");
         }
       } catch (error) {
-        console.log(error);
         return errorHandler(res, 500, error);
       }
     });
     //刪除全部
+  } else if (url === "/posts" && method === "DELETE") {
+    try {
+      const delres = await posts.deleteMany();
+      successHandler(res, 200, {
+        status: "success",
+        data: delres,
+      });
+    } catch (error) {
+      return errorHandler(res, 500, error);
+    }
+
+    //刪除單筆
+  } else if (url.startsWith("/post/") && method === "DELETE") {
+    const id = url.split("/").pop();
+    if (!id) {
+      return errorHandler(res, 400, "網址格式錯誤");
+    }
+    try {
+      const delres = await posts.deleteOne({ _id: id });
+      if (delres.deletedCount === 0) {
+        return errorHandler(res, 400, "刪除失敗,找不到id");
+      }
+      successHandler(res, 200, {
+        status: "success",
+        data: delres,
+      });
+    } catch (error) {
+      return errorHandler(res, 500, error);
+    }
+  } else if (url.startsWith("/post/") && method === "PATCH") {
+    req.on("end", async () => {
+      try {
+        body = JSON.parse(body);
+        const id = url.split("/").pop();
+        if (!id) {
+          return errorHandler(res, 400, "網址格式錯誤");
+        }
+
+        const Updateres = await posts.updateOne({ _id: id }, { ...body });
+        if (Updateres.matchedCount === 0) {
+          return errorHandler(res, 400, "編輯單一失敗,找不到id");
+        }
+        successHandler(res, 200, {
+          status: "success",
+          data: Updateres,
+        });
+      } catch (error) {
+        return errorHandler(res, 500, error);
+      }
+    });
   } else if (method === "OPTIONS") {
     const headers = {
       "Access-Control-Allow-Headers":
